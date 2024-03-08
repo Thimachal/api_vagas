@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionHandlerController {
 
     private MessageSource messageSource;
+
+    public  ExceptionHandlerController(MessageSource message){
+        this.messageSource = message;
+    }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public void handleMethodArgumentNotValidException(MethodArgumentNotValidException e){
         e.getBindingResult().getFieldErrors().forEach(err ->{
