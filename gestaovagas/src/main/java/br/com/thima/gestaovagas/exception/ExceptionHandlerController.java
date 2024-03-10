@@ -19,7 +19,7 @@ public class ExceptionHandlerController {
         this.messageSource = message;
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public void handleMethodArgumentNotValidException(MethodArgumentNotValidException e){
+    public ResponseEntity<List<ErrorMessageDTO>> handleMethodArgumentNotValidException(MethodArgumentNotValidException e){
         List <ErrorMessageDTO> dto = new ArrayList<>();
 
 
@@ -29,7 +29,7 @@ public class ExceptionHandlerController {
             dto.add(error);
         });
 
-        return; new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
     }
 
 }
